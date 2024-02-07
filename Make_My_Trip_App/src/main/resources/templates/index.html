@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Ticket Booking App</title>
+</head>
+<body>
+<p th:text="${msg}"></p>
+<h2>Ticket Booking</h2>
+<form th:action="@{/book-ticket}" th:object="${passenger}" method="post">
+	Name:<input type="text" th:field="*{name}"/>
+	<br/>
+	<br/>
+	From:<input type="text" th:field="*{from}"/>
+	<br/>
+	<br/>
+	To:<input type="text" th:field="*{to}"/>
+	<br/>
+	<br/>
+	Doj:<input type="date" th:field="*{doj}"/>
+	<br/>
+	<br/>
+	TrainNumber:<input type="number" th:field="*{trainNumber}"/>
+	<br/>
+	<br/>
+	<td><input type="submit"  value="BookTicket" >
+	
+	</td>
+</form>
+<a th:href="ticket">Get Ticket</a>
+</body>
+</html>
