@@ -1,0 +1,164 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"description": "Api Documentation",
+		"version": "1.0",
+		"title": "Api Documentation",
+		"termsOfService": "urn:tos",
+		"contact": {
+			
+		},
+		"license": {
+			"name": "Apache 2.0",
+			"url": "http://www.apache.org/licenses/LICENSE-2.0"
+		}
+	},
+	"host": "localhost:8080",
+	"basePath": "/",
+	"tags": [
+		{
+			"name": "booking-controller",
+			"description": "Booking Controller"
+		}
+	],
+	"paths": {
+		"/get/{ticketNum}/data": {
+			"get": {
+				"tags": [
+					"booking-controller"
+				],
+				"summary": "getTicket",
+				"operationId": "getTicketUsingGET",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "ticketNum",
+						"in": "path",
+						"description": "ticketNum",
+						"required": true,
+						"type": "integer",
+						"format": "int32"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Ticket"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/ticket": {
+			"post": {
+				"tags": [
+					"booking-controller"
+				],
+				"summary": "bookTicket",
+				"operationId": "bookTicketUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "p",
+						"description": "p",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Passenger"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Ticket"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"Passenger": {
+			"type": "object",
+			"properties": {
+				"doj": {
+					"type": "string"
+				},
+				"from": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				},
+				"to": {
+					"type": "string"
+				},
+				"trainNumber": {
+					"type": "integer",
+					"format": "int32"
+				}
+			},
+			"title": "Passenger"
+		},
+		"Ticket": {
+			"type": "object",
+			"properties": {
+				"cost": {
+					"type": "number",
+					"format": "double"
+				},
+				"doj": {
+					"type": "string"
+				},
+				"from": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				},
+				"status": {
+					"type": "string"
+				},
+				"ticketNum": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"to": {
+					"type": "string"
+				}
+			},
+			"title": "Ticket"
+		}
+	}
+}
